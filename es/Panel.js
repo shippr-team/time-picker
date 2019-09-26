@@ -264,7 +264,7 @@ _defineProperty(Panel, "propTypes", {
 });
 
 _defineProperty(Panel, "defaultProps", {
-  prefixCls: 'rc-time-picker-monkey-patch',
+  prefixCls: 'rc-time-picker',
   onChange: noop,
   disabledHours: noop,
   disabledMinutes: noop,

@@ -431,7 +431,7 @@ _defineProperty(Picker, "propTypes", {
 
 _defineProperty(Picker, "defaultProps", {
   clearText: 'clear',
-  prefixCls: 'rc-time-picker-monkey-patch',
+  prefixCls: 'rc-time-picker',
   defaultOpen: false,
   inputReadOnly: false,
   style: {},

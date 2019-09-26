@@ -66,7 +66,7 @@ class Picker extends Component {
 
   static defaultProps = {
     clearText: 'clear',
-    prefixCls: 'rc-time-picker-monkey-patch',
+    prefixCls: 'rc-time-picker',
     defaultOpen: false,
     inputReadOnly: false,
     style: {},

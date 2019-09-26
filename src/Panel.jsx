@@ -62,7 +62,7 @@ class Panel extends Component {
   };
 
   static defaultProps = {
-    prefixCls: 'rc-time-picker-monkey-patch',
+    prefixCls: 'rc-time-picker',
     onChange: noop,
     disabledHours: noop,
     disabledMinutes: noop,
