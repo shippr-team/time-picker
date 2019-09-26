@@ -184,8 +184,11 @@ function (_Component) {
         options: minuteOptions.map(function (option) {
           return formatOption(option, disabledOptions);
         }).map(function (option) {
+          var start = parseInt(option.value);
+          var end = start + 15;
+          end = end < 60 ? end : 0;
           return _objectSpread({}, option, {
-            displayValue: "".concat(option.value, " - ").concat(parseInt(option.value) + 15)
+            displayValue: "".concat(start, " - ").concat(end)
           });
         }),
         selectedIndex: minuteOptions.indexOf(minute),

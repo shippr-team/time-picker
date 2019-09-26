@@ -134,16 +134,18 @@ class Combobox extends Component {
     }
     const value = propValue || defaultOpenValue;
     const disabledOptions = disabledMinutes(value.hour());
-
     return (
       <Select
         prefixCls={prefixCls}
         options={minuteOptions
           .map(option => formatOption(option, disabledOptions))
           .map(option => {
+            const start = parseInt(option.value);
+            let end = start + 15
+            end = end < 60 ? end : 0
             return {
               ...option,
-              displayValue: `${option.value} - ${parseInt(option.value) + 15}`,
+              displayValue: `${start} - ${end}`,
             };
           })}
         selectedIndex={minuteOptions.indexOf(minute)}
