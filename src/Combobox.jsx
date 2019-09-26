@@ -140,9 +140,12 @@ class Combobox extends Component {
         options={minuteOptions
           .map(option => formatOption(option, disabledOptions))
           .map(option => {
-            const start = parseInt(option.value);
-            let end = start + 15
+            const start = option.value;
+            let end = parseInt(start) + 15
             end = end < 60 ? end : 0
+            if (end < 10) {
+              end = `0${end}`;
+            }
             return {
               ...option,
               displayValue: `${start} - ${end}`,
