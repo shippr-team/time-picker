@@ -322,14 +322,20 @@ class Picker extends Component {
     const { open, value } = this.state;
 
     const monkeyFormat = function(value) {
-      const start = value;
-      let end = parseInt(start) + 15;
+      let hour = value.getHours()
+      let start = value.getMinutes();
+      let end = start + 15;
       end = end < 60 ? end : 0;
-
+      if (hour < 10) {
+        hour = "0".concat(hour);
+      }
+      if (start < 10) {
+        start = "0".concat(start);
+      }
       if (end < 10) {
         end = "0".concat(end);
       }
-      return "".concat(start, " - ").concat(end)
+      return `${hour}:${start} - ${hour}:${end}`
     }
     const popupClassName = this.getPopupClassName();
     return (
