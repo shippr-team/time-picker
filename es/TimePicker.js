@@ -149,7 +149,6 @@ function (_Component) {
         showMinute: showMinute,
         showSecond: showSecond,
         onEsc: this.onEsc,
-        format: this.getFormat(),
         placeholder: placeholder,
         disabledHours: disabledHours,
         disabledMinutes: disabledMinutes,
