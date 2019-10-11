@@ -162,24 +162,8 @@ class Picker extends Component {
     onChange(value);
   }
 
-  getFormat() {
-    const { format, showHour, showMinute, showSecond, use12Hours } = this.props;
-    if (format) {
-      return format;
-    }
 
-    if (use12Hours) {
-      const fmtString = [showHour ? 'h' : '', showMinute ? 'mm' : '', showSecond ? 'ss' : '']
-        .filter(item => !!item)
-        .join(':');
 
-      return fmtString.concat(' a');
-    }
-
-    return [showHour ? 'HH' : '', showMinute ? 'mm' : '', showSecond ? 'ss' : '']
-      .filter(item => !!item)
-      .join(':');
-  }
 
   getPanelElement() {
     const {
@@ -337,6 +321,17 @@ class Picker extends Component {
       popupStyle,
     } = this.props;
     const { open, value } = this.state;
+
+    const monkeyFormat = function(value) {
+      const start = value;
+      let end = parseInt(start) + 15;
+      end = end < 60 ? end : 0;
+
+      if (end < 10) {
+        end = "0".concat(end);
+      }
+      return "".concat(start, " - ").concat(end)
+    }
     const popupClassName = this.getPopupClassName();
     return (
       <Trigger
@@ -363,7 +358,7 @@ class Picker extends Component {
             name={name}
             onKeyDown={this.onKeyDown}
             disabled={disabled}
-            value={(value && value.format(this.getFormat())) || ''}
+            value={(value && monkeyFormat(value)) || ''}
             autoComplete={autoComplete}
             onFocus={onFocus}
             onBlur={onBlur}
