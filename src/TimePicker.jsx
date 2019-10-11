@@ -322,6 +322,7 @@ class Picker extends Component {
     const { open, value } = this.state;
 
     const monkeyFormat = function(value) {
+      value = new Date(value)
       let hour = value.getHours()
       let start = value.getMinutes();
       let end = start + 15;

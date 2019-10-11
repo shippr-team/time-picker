@@ -298,6 +298,7 @@ function (_Component) {
           value = _this$state.value;
 
       var monkeyFormat = function monkeyFormat(value) {
+        value = new Date(value);
         var hour = value.getHours();
         var start = value.getMinutes();
         var end = start + 15;
