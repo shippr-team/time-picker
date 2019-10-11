@@ -164,6 +164,24 @@ class Header extends Component {
     const { prefixCls, placeholder, inputReadOnly } = this.props;
     const { invalid, str } = this.state;
     const invalidClass = invalid ? `${prefixCls}-input-invalid` : '';
+
+
+    let value = new Date(str)
+    let hour = value.getHours()
+    let start = value.getMinutes();
+    let end = start + 15;
+    end = end < 60 ? end : 0;
+    if (hour < 10) {
+      hour = "0".concat(hour);
+    }
+    if (start < 10) {
+      start = "0".concat(start);
+    }
+    if (end < 10) {
+      end = "0".concat(end);
+    }
+
+
     return (
       <input
         className={classNames(`${prefixCls}-input`, invalidClass)}
@@ -171,7 +189,7 @@ class Header extends Component {
           this.refInput = ref;
         }}
         onKeyDown={this.onKeyDown}
-        value={str}
+        value={`${hour}:${start} - ${hour}:${end}`}
         placeholder={placeholder}
         onChange={this.onInputChange}
         readOnly={!!inputReadOnly}
