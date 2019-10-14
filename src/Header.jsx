@@ -165,22 +165,30 @@ class Header extends Component {
     const { invalid, str } = this.state;
     const invalidClass = invalid ? `${prefixCls}-input-invalid` : '';
 
-
     let value = new Date(str)
-    let hour = value.getHours()
-    let start = value.getMinutes();
-    let end = start + 15;
-    end = end < 60 ? end : 0;
-    if (hour < 10) {
-      hour = "0".concat(hour);
+    let startHour = value.getHours()
+    let startMinutes = value.getMinutes();
+    let endHour = startHour;
+    let endMinutes = startMinutes + 15;
+    if(endMinutes >= 60) {
+      endHour = endHour + 1;
+      if(endHour >= 24) {
+        endHour = 0
+      }
+      endMinutes = 0;
     }
-    if (start < 10) {
-      start = "0".concat(start);
+    if (startHour < 10) {
+      startHour = "0".concat(startHour);
     }
-    if (end < 10) {
-      end = "0".concat(end);
+    if (endHour < 10) {
+      endHour = "0".concat(endHour);
     }
-
+    if (startMinutes < 10) {
+      startMinutes = "0".concat(startMinutes);
+    }
+    if (endMinutes < 10) {
+      endMinutes = "0".concat(endMinutes);
+    }
 
     return (
       <input
@@ -189,7 +197,7 @@ class Header extends Component {
           this.refInput = ref;
         }}
         onKeyDown={this.onKeyDown}
-        value={`${hour}:${start} - ${hour}:${end}`}
+        value={`${startHour}:${startMinutes} - ${endHour}:${endMinutes}`}
         placeholder={placeholder}
         onChange={this.onInputChange}
         readOnly={!!inputReadOnly}

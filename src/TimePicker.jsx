@@ -322,21 +322,34 @@ class Picker extends Component {
     const { open, value } = this.state;
 
     const monkeyFormat = function(value) {
+
+
       value = new Date(value)
-      let hour = value.getHours()
-      let start = value.getMinutes();
-      let end = start + 15;
-      end = end < 60 ? end : 0;
-      if (hour < 10) {
-        hour = "0".concat(hour);
+      let startHour = value.getHours()
+      let startMinutes = value.getMinutes();
+      let endHour = startHour;
+      let endMinutes = startMinutes + 15;
+      if(endMinutes >= 60) {
+        endHour = endHour + 1;
+        if(endHour >= 24) {
+          endHour = 0
+        }
+        endMinutes = 0;
       }
-      if (start < 10) {
-        start = "0".concat(start);
+      if (startHour < 10) {
+        startHour = "0".concat(startHour);
       }
-      if (end < 10) {
-        end = "0".concat(end);
+      if (endHour < 10) {
+        endHour = "0".concat(endHour);
       }
-      return `${hour}:${start} - ${hour}:${end}`
+      if (startMinutes < 10) {
+        startMinutes = "0".concat(startMinutes);
+      }
+      if (endMinutes < 10) {
+        endMinutes = "0".concat(endMinutes);
+      }
+
+      return `${startHour}:${startMinutes} - ${endHour}:${endMinutes}`
     }
     const popupClassName = this.getPopupClassName();
     return (
